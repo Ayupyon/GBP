@@ -8,8 +8,11 @@ class StarBullet : public BaseObject
 public:
     StarBullet(int _X,int _Y);
     bool CollideWithMarinai();
+    bool EncounterWithTsugu();
     int LocX;
     int LocY;
+    int _speed;
+    int _attack;
     QTimer* Timer;
 };
 

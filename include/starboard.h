@@ -3,12 +3,12 @@
 #include "baseobject.h"
 #include <QLabel>
 #include <QTimer>
-
+#include <QWidget>
 
 class StarBoard : public BaseObject
 {
 public:
-    StarBoard();
+    StarBoard(QWidget* parent);
     void StarReduce(int num);
     int StarNum = 50;
     QLabel* numLabel;

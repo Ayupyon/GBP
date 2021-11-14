@@ -4,30 +4,30 @@
 
 extern Control con;
 
+#define STRENGTH 200
+
 Kasumi::Kasumi(int _X, int _Y, StarBoard* Board):BaseGirls(_X, _Y)
 {
-    Strength = 100;
+    _kind = KASUMI;
+    Strength = STRENGTH;
     QPixmap pix(":/Kasumi_Battling.png");
     setPixmap(pix);
     setFixedSize(90,90);
     setScaledContents(true);
-    move(80+(LocY-1)*90,100+(LocX-1)*90);
+    move(START_X + LocX * 90, START_Y + LocY * 90);
     Timer = new QTimer;
     ProduceTimer = new QTimer;
     connect(Timer,&QTimer::timeout,this,[=](){
         if(Strength > 0)
         {
-            if(Strength < 20)
+            if(Strength < STRENGTH / 5)
             {
                 setPixmap(QPixmap(":/Kasumi_Exhausted.png"));
-            }
-            if(CollideWithMarinais())
-            {
-                Damage();
             }
         }
         else
         {
+            Timer->stop();
             auto it = con.GirlsList.find(this);
             if(it!=con.GirlsList.end()) con.GirlsList.erase(it);
             this->close();
@@ -38,11 +38,11 @@ Kasumi::Kasumi(int _X, int _Y, StarBoard* Board):BaseGirls(_X, _Y)
     connect(ProduceTimer,&QTimer::timeout,this,[=](){
         StarStone* star = new StarStone(Board);
         star->setParent((QWidget*)this->parent());
-        star->move(100+(LocY-1)*90,120+(LocX-1)*90);
+        star->move(START_X + LocX * 90, START_Y + LocY * 90);
         star->show();
-        star->KasumiProduce();
+        star->CardProduce();
     });
-    ProduceTimer->start(12000);
+    ProduceTimer->start(20000);
     con.GirlsList.insert(this);
 }
 

@@ -22,7 +22,7 @@ void StarStone::autoProduce()
     Animate->start();
 }
 
-void StarStone::KasumiProduce()
+void StarStone::CardProduce()
 {
     QPropertyAnimation *Animate = new QPropertyAnimation(this,"geometry");
     Animate->setDuration(500);

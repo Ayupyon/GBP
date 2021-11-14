@@ -1,0 +1,34 @@
+#ifndef CARD_H
+#define CARD_H
+#include "baseobject.h"
+#include "starboard.h"
+
+template <class T>
+class Card : public BaseObject
+{
+public:
+    Card(QString path,QString pressedPath,StarBoard* board,int cost,int coolDown,int index):
+    Path(path),PressedPath(pressedPath),Board(board),Cost(cost),CoolDown(coolDown)
+    {
+        QPixmap pix(Path);
+        setPixmap(pix);
+        setFixedSize(90,90);
+        setScaledContents(true);
+        move(90*index,0);
+        Girl = nullptr;
+    }
+    void mousePressEvent(QMouseEvent* event) override
+    {
+        Q_UNUSED(event);
+        setCursor();
+    }
+    void mouseReleaseEvent(QMouseEvent* event) override;
+    QString Path;
+    QString PressedPath;
+    StarBoard* Board;
+    T* Girl;
+    int Cost;
+    int CoolDown;
+};
+
+#endif // CARD_H

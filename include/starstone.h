@@ -10,7 +10,7 @@ public:
     StarBoard* TargetBoard;
     virtual void mousePressEvent(QMouseEvent* event) override;
     void autoProduce();
-    void KasumiProduce();
+    void CardProduce();
 signals:
     void collectStar();
 };

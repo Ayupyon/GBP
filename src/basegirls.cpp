@@ -11,24 +11,17 @@ BaseGirls::BaseGirls(int _X,int _Y)
     LocY = _Y;
 }
 
-void BaseGirls::Damage()
+void BaseGirls::Damage(int damage)
 {
-    Strength -= 10;
+    Strength -= damage;
 }
 
 bool BaseGirls::CollideWithMarinais()
 {
-    int minDis = INF;
     for(auto Marinai:con.MarinaiList)
     {
-        if(LocX == Marinai->LocX)
-        {
-            int Dis = Marinai->x()-x();
-            if(Dis > 0 && Dis < minDis)
-            {
-                minDis = Dis;
-            }
-        }
+        if(LocX == Marinai->LocX && LocY == Marinai->LocY && Marinai->_type == LAND)
+            return true;
     }
-    return minDis < 70;
+    return false;
 }

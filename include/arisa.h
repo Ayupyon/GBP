@@ -6,9 +6,9 @@
 class Arisa : public BaseGirls
 {
 public:
-    Arisa(int _X,int _Y,StarBoard*);
+    Arisa(int _X, int _Y, StarBoard*);
     bool FindMarinais();
-    QTimer* BulletTimer;
+    int _attack_counter;
 };
 
 #endif // ARISA_H
